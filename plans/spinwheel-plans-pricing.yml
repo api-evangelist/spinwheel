@@ -1,0 +1,114 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Spinwheel
+providerId: spinwheel
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Fintech
+- Credit Data
+- Debt
+- Liabilities
+- Payments
+- Embedded Finance
+- Plans
+description: >-
+  Spinwheel sells its embedded credit and debt platform through a sales-led,
+  contract-based model. There is no public self-serve price list. Partners
+  provision sandbox keys from the developer portal for evaluation, then engage
+  Spinwheel sales to scope production access, which is typically priced per
+  enabled module (user connect, credit data / debt profile, liability refresh,
+  payments) with usage components such as per credit-report pull, per refresh,
+  and per payment / transaction. Specific rates are not published and are not
+  reconciled in this artifact.
+notes: >-
+  No public pricing page exists; pricing is quoted by Spinwheel sales per
+  partner. Reconcile module bundling and per-unit usage rates directly with
+  Spinwheel during a commercial engagement.
+sources:
+- https://spinwheel.io/
+- https://docs.spinwheel.io/docs/getting-started-1
+- https://developer.spinwheel.io
+plans:
+- id: spinwheel-sandbox
+  name: Sandbox
+  type: free
+  description: >-
+    Free sandbox access provisioned from the developer portal for evaluating
+    the user-connect, debt-profile, liability, and payment flows against
+    Spinwheel test data.
+  entries:
+  - label: Sandbox Access
+    name: sandbox
+    type: free
+    metric: access
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: User Connect
+  - name: Debt Profile (sandbox)
+  - name: Liability Refresh (sandbox)
+  - name: Payments (sandbox)
+- id: spinwheel-partner
+  name: Partner (Production)
+  type: enterprise
+  description: >-
+    Sales-led production agreement. Access is scoped per enabled module with
+    usage-based components (credit report pulls, liability refreshes, payments
+    and transactions). Pricing is negotiated per partner; contact Spinwheel.
+  entries:
+  - label: Partner Agreement
+    name: partner
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Credit Report / Debt Profile Pull
+    name: credit_report_pull
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Liability Refresh
+    name: liability_refresh
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Payment / Transaction
+    name: payment_transaction
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: User Connect (SMS / KBA / Phone / Network Token)
+  - name: Credit Data / Debt Profile
+  - name: Liabilities & Refresh Subscriptions
+  - name: Embedded Payments
+  - name: Webhooks
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

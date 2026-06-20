@@ -1,0 +1,67 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Spinwheel
+providerId: spinwheel
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Fintech
+- Credit Data
+- Debt
+- Liabilities
+- Payments
+- Embedded Finance
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Spinwheel does not publish specific public rate limits for its embedded debt
+  API. Limits are governed per partner under the production agreement and by the
+  asynchronous, request-and-poll design of several operations (liability refresh
+  and debt-profile pulls are submitted, then polled or delivered via webhook).
+  Per-account and per-endpoint thresholds are not documented publicly and are
+  not reconciled in this artifact.
+notes: >-
+  Confirm concrete per-endpoint and per-partner limits, retry guidance, and any
+  429 throttling behavior with Spinwheel during onboarding. Long-running pulls
+  use a poll/webhook pattern rather than synchronous responses.
+sources:
+- https://docs.spinwheel.io/docs/getting-started-1
+- https://docs.spinwheel.io/docs/webhooks
+- https://developer.spinwheel.io
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-Partner API Limits
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Governed per partner under the production agreement; not publicly documented.
+- name: Credit Report / Debt Profile Pulls
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Equifax-backed pulls are metered per partner; submitted then delivered via poll/webhook.
+- name: Liability Refresh
+  scope: user
+  metric: requests
+  limit: see provider documentation
+  notes: Refresh requests are submitted then polled via the refresh status endpoint or webhook.
+- name: Payments
+  scope: account
+  metric: transactions
+  limit: see provider documentation
+  notes: Payment request throughput governed per partner agreement.
+policies:
+- name: Asynchronous Poll / Webhook
+  description: >-
+    Long-running operations (liability refresh, credit report pulls) are
+    submitted and then completed asynchronously via polling the status endpoint
+    or receiving a webhook event, rather than a single synchronous response.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor any Retry-After guidance on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

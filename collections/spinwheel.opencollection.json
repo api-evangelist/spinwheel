@@ -1,0 +1,539 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spinwheel Embedded Debt Solutions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Connect a user via SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/sms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect a user via SMS"
+        },
+        {
+          "info": {
+            "name": "Verify an SMS connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/sms/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verify an SMS connection"
+        },
+        {
+          "info": {
+            "name": "Connect a user via KBA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/kba",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect a user via KBA"
+        },
+        {
+          "info": {
+            "name": "Submit answers for KBA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/kba/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit answers for KBA"
+        },
+        {
+          "info": {
+            "name": "Connect a pre-verified (phone) user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/phone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect a pre-verified (phone) user"
+        },
+        {
+          "info": {
+            "name": "Connect a user via network token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/network-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect a user via network token"
+        },
+        {
+          "info": {
+            "name": "Retrieve a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}"
+          },
+          "docs": "Retrieve a user"
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}"
+          },
+          "docs": "Delete a user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Credit Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a debt profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/debt-profile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request a debt profile"
+        },
+        {
+          "info": {
+            "name": "Get a debt profile (Equifax)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/creditProfile/equifax",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a debt profile (Equifax)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Liabilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Subscribe to debt profile refresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/creditProfile/equifax/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe to debt profile refresh"
+        },
+        {
+          "info": {
+            "name": "Get refresh subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/creditProfile/equifax/subscriptions"
+          },
+          "docs": "Get refresh subscriptions"
+        },
+        {
+          "info": {
+            "name": "Delete refresh subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/creditProfile/equifax/subscriptions"
+          },
+          "docs": "Delete refresh subscriptions"
+        },
+        {
+          "info": {
+            "name": "Request liability data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/liabilities/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request liability data"
+        },
+        {
+          "info": {
+            "name": "Poll request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/liabilities/refresh/{{extRequestId}}"
+          },
+          "docs": "Poll request status"
+        },
+        {
+          "info": {
+            "name": "Update a credit card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/liabilities/creditcard/{{liabilityId}}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a credit card"
+        },
+        {
+          "info": {
+            "name": "Update a student loan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/liabilities/studentloan/{{liabilityId}}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a student loan"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bank Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/bank-accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a bank account"
+        },
+        {
+          "info": {
+            "name": "Update a bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/bank-accounts/{{accountId}}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a bank account"
+        },
+        {
+          "info": {
+            "name": "Delete a bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/users/{{userId}}/bank-accounts/{{accountId}}"
+          },
+          "docs": "Delete a bank account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/payments/requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payment"
+        },
+        {
+          "info": {
+            "name": "Get a list of payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/requests"
+          },
+          "docs": "Get a list of payments"
+        },
+        {
+          "info": {
+            "name": "Get single payment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/requests/{{requestId}}"
+          },
+          "docs": "Get single payment details"
+        },
+        {
+          "info": {
+            "name": "Delete a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/payments/requests/{{requestId}}"
+          },
+          "docs": "Delete a payment"
+        },
+        {
+          "info": {
+            "name": "Create a partner payer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/payments/payers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a partner payer"
+        },
+        {
+          "info": {
+            "name": "Get a list of payers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/payers"
+          },
+          "docs": "Get a list of payers"
+        },
+        {
+          "info": {
+            "name": "Get single payer details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/payers/{{payerId}}"
+          },
+          "docs": "Get single payer details"
+        },
+        {
+          "info": {
+            "name": "Delete a payer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/payments/payers/{{payerId}}"
+          },
+          "docs": "Delete a payer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook"
+        },
+        {
+          "info": {
+            "name": "Get a list of webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/webhooks"
+          },
+          "docs": "Get a list of webhooks"
+        },
+        {
+          "info": {
+            "name": "Get single webhook details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/webhooks/{{webhookId}}"
+          },
+          "docs": "Get single webhook details"
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spinwheel.io/v1/webhooks/{{webhookId}}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/webhooks/{{webhookId}}"
+          },
+          "docs": "Delete a webhook"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of constants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/constants"
+          },
+          "docs": "Get a list of constants"
+        },
+        {
+          "info": {
+            "name": "Get a list of makes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/vehicles/makes"
+          },
+          "docs": "Get a list of makes"
+        },
+        {
+          "info": {
+            "name": "Get a list of models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/vehicles/models"
+          },
+          "docs": "Get a list of models"
+        }
+      ]
+    }
+  ]
+}

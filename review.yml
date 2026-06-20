@@ -1,0 +1,108 @@
+aid: spinwheel
+name: Spinwheel
+review:
+  question: Does Spinwheel expose a documented public streaming API (WebSocket or SSE)?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Spinwheel's event delivery is provider-to-partner HTTP webhooks (partner
+    registers an endpoint; Spinwheel POSTs event payloads such as
+    USER_PAYMENT_STATUS or REFRESH_TRANSACTION_STATUS). Webhooks are outbound
+    HTTP callbacks, not a client-consumed streaming transport. No WebSocket
+    (ws:// or wss://) and no Server-Sent Events (SSE) stream is documented, so
+    no AsyncAPI document was authored. Long-running operations use a
+    request-and-poll pattern over REST plus webhook completion events.
+findings:
+  summary: |
+    Spinwheel publishes a REST (HTTPS) embedded debt API under
+    https://api.spinwheel.io (sandbox https://sandbox-api.spinwheel.io, with
+    secure variants secure-api / secure-sandbox-api). Everything is scoped to a
+    connected userId. Authentication uses a Spinwheel secret API key issued from
+    the developer portal; the exact transport header is gated behind the
+    developer login and was not reconciled. Asynchronous results (credit report
+    pulls, liability refreshes) are delivered by polling a status endpoint or by
+    receiving an outbound webhook. No bidirectional or streaming surface is
+    documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.spinwheel.io/v1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Outbound HTTP callbacks from Spinwheel to partner-registered endpoints; not a client-consumed stream.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Spinwheel's API reference.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming endpoint is documented.
+  endpointsConfirmedRest:
+    - GET    https://api.spinwheel.io/v1/users/{userId}
+    - DELETE https://api.spinwheel.io/v1/users/{userId}
+    - POST   https://api.spinwheel.io/v1/users/connect/sms
+    - POST   https://api.spinwheel.io/v1/users/connect/sms/verify
+    - POST   https://api.spinwheel.io/v1/users/connect/kba
+    - POST   https://api.spinwheel.io/v1/users/connect/kba/verify
+    - POST   https://api.spinwheel.io/v1/users/connect/network-token
+    - POST   https://api.spinwheel.io/v1/users/{userId}/debt-profile
+    - POST   https://api.spinwheel.io/v1/users/{userId}/creditProfile/equifax
+    - POST   https://api.spinwheel.io/v1/users/{userId}/creditProfile/equifax/subscriptions
+    - GET    https://api.spinwheel.io/v1/users/{userId}/creditProfile/equifax/subscriptions
+    - DELETE https://api.spinwheel.io/v1/users/{userId}/creditProfile/equifax/subscriptions
+    - POST   https://api.spinwheel.io/v1/users/{userId}/liabilities/refresh
+    - GET    https://api.spinwheel.io/v1/users/{userId}/liabilities/refresh/{extRequestId}
+    - POST   https://api.spinwheel.io/v1/users/{userId}/bank-accounts
+    - PATCH  https://api.spinwheel.io/v1/users/{userId}/bank-accounts/{accountId}
+    - DELETE https://api.spinwheel.io/v1/users/{userId}/bank-accounts/{accountId}
+    - POST   https://api.spinwheel.io/v1/payments/requests
+    - GET    https://api.spinwheel.io/v1/payments/requests
+    - GET    https://api.spinwheel.io/v1/payments/requests/{requestId}
+    - DELETE https://api.spinwheel.io/v1/payments/requests/{requestId}
+    - POST   https://api.spinwheel.io/v1/payments/payers
+    - GET    https://api.spinwheel.io/v1/payments/payers
+    - GET    https://api.spinwheel.io/v1/payments/payers/{payerId}
+    - DELETE https://api.spinwheel.io/v1/payments/payers/{payerId}
+    - POST   https://api.spinwheel.io/v1/webhooks
+    - GET    https://api.spinwheel.io/v1/webhooks
+    - GET    https://api.spinwheel.io/v1/constants
+    - GET    https://api.spinwheel.io/v1/vehicles/makes
+  webhookEvents:
+    - SUBSCRIPTION_ACTIVATED
+    - SUBSCRIPTION_FAILED
+    - USER_CREDIT_PROFILE_TRANSACTION
+    - USER_CREDIT_PROFILE_TRANSACTION_FAILED
+    - REFRESH_TRANSACTION_STATUS
+    - USER_PAYMENT_STATUS
+    - PLATFORM_PAYMENT_STATUS
+    - USER_REFINANCE_STATUS
+    - BANK_ACCOUNT_LOOKUP_STATUS_CHANGE
+    - LIABILITY_GROUP_PAYOFF_QUOTE_STATUS_CHANGE
+sources:
+  - url: https://docs.spinwheel.io/docs/getting-started-1
+    type: Documentation
+    note: Lists sandbox/production and secure base URLs; secret-key auth from the developer portal.
+  - url: https://docs.spinwheel.io/reference/order-equifax-report
+    type: APIReference
+    note: POST /v1/users/{userId}/creditProfile/equifax to order an Equifax debt profile.
+  - url: https://docs.spinwheel.io/docs/payments-process
+    type: Documentation
+    note: Payment requests/payers under /v1/payments; all REST over HTTPS.
+  - url: https://docs.spinwheel.io/docs/webhooks
+    type: Documentation
+    note: Outbound webhook events; no WebSocket or SSE described.
+  - url: https://docs.spinwheel.io/llms.txt
+    type: Documentation
+    note: Machine-readable index of pages and OpenAPI endpoints.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE streaming surface exists. Event delivery is outbound
+    HTTP webhooks plus REST request-and-poll, neither of which is a
+    client-consumed streaming transport, so no AsyncAPI document was authored.
