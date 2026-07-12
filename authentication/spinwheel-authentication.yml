@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spinwheel-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Spinwheel secret API key issued from the developer portal (https://developer.spinwheel.io).
+    The exact transport header is gated behind the developer login and not reconciled here.
+  sources:
+  - openapi/spinwheel-openapi.yml

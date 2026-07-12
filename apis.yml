@@ -142,6 +142,10 @@ apis:
     notifications such as subscription, credit-profile transaction, refresh, payment,
     refinance, bank-account-lookup, and payoff-quote status changes.
 common:
+- type: DomainSecurity
+  url: security/spinwheel-domain-security.yml
+- type: Authentication
+  url: authentication/spinwheel-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/spinwheel
 - type: Website
@@ -154,6 +158,8 @@ common:
   url: rate-limits/spinwheel-rate-limits.yml
 - type: FinOps
   url: finops/spinwheel-finops.yml
+- url: https://www.spinwheel.io/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
