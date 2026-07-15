@@ -142,6 +142,8 @@ apis:
     notifications such as subscription, credit-profile transaction, refresh, payment,
     refinance, bank-account-lookup, and payoff-quote status changes.
 common:
+- type: AgenticAccess
+  url: agentic-access/spinwheel-agentic-access.yml
 - type: DomainSecurity
   url: security/spinwheel-domain-security.yml
 - type: Authentication
