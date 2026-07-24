@@ -1,0 +1,57 @@
+openapi: 3.0.1
+info:
+  title: Spinwheel Embedded Debt Solutions Bank Accounts Reference API
+  description: Spinwheel's embedded credit and debt API. Connect a consumer, pull an Equifax-backed debt profile, refresh real-time liability balances and payoff quotes across credit cards and loans, originate bank-account-funded payments, and subscribe to webhook events. Most resources are scoped to a connected user identified by userId, the unique key used for accessing most Spinwheel APIs. Authentication uses a Spinwheel secret API key issued from the developer portal; the exact header scheme is gated behind the developer login and is not reconciled here - it is modeled as an HTTP bearer secret key.
+  termsOfService: https://spinwheel.io/terms
+  contact:
+    name: Spinwheel Support
+    url: https://docs.spinwheel.io
+  version: '1.0'
+servers:
+- url: https://api.spinwheel.io
+  description: Production
+- url: https://sandbox-api.spinwheel.io
+  description: Sandbox
+- url: https://secure-api.spinwheel.io
+  description: Production (secure)
+- url: https://secure-sandbox-api.spinwheel.io
+  description: Sandbox (secure)
+security:
+- bearerAuth: []
+tags:
+- name: Reference
+  description: Constants and vehicle reference data.
+paths:
+  /v1/constants:
+    get:
+      operationId: listConstants
+      tags:
+      - Reference
+      summary: Get a list of constants
+      responses:
+        '200':
+          description: Constants returned.
+  /v1/vehicles/makes:
+    get:
+      operationId: listVehicleMakes
+      tags:
+      - Reference
+      summary: Get a list of makes
+      responses:
+        '200':
+          description: Makes returned.
+  /v1/vehicles/models:
+    get:
+      operationId: listVehicleModels
+      tags:
+      - Reference
+      summary: Get a list of models
+      responses:
+        '200':
+          description: Models returned.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Spinwheel secret API key issued from the developer portal (https://developer.spinwheel.io). The exact transport header is gated behind the developer login and not reconciled here.

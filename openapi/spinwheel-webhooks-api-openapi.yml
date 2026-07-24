@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  title: Spinwheel Embedded Debt Solutions Bank Accounts Webhooks API
+  description: Spinwheel's embedded credit and debt API. Connect a consumer, pull an Equifax-backed debt profile, refresh real-time liability balances and payoff quotes across credit cards and loans, originate bank-account-funded payments, and subscribe to webhook events. Most resources are scoped to a connected user identified by userId, the unique key used for accessing most Spinwheel APIs. Authentication uses a Spinwheel secret API key issued from the developer portal; the exact header scheme is gated behind the developer login and is not reconciled here - it is modeled as an HTTP bearer secret key.
+  termsOfService: https://spinwheel.io/terms
+  contact:
+    name: Spinwheel Support
+    url: https://docs.spinwheel.io
+  version: '1.0'
+servers:
+- url: https://api.spinwheel.io
+  description: Production
+- url: https://sandbox-api.spinwheel.io
+  description: Sandbox
+- url: https://secure-api.spinwheel.io
+  description: Production (secure)
+- url: https://secure-sandbox-api.spinwheel.io
+  description: Sandbox (secure)
+security:
+- bearerAuth: []
+tags:
+- name: Webhooks
+  description: Register and manage webhook endpoints.
+paths:
+  /v1/webhooks:
+    post:
+      operationId: createWebhook
+      tags:
+      - Webhooks
+      summary: Create a webhook
+      responses:
+        '200':
+          description: Webhook created.
+    get:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: Get a list of webhooks
+      responses:
+        '200':
+          description: Webhooks returned.
+  /v1/webhooks/{webhookId}:
+    get:
+      operationId: getWebhook
+      tags:
+      - Webhooks
+      summary: Get single webhook details
+      parameters:
+      - $ref: '#/components/parameters/WebhookId'
+      responses:
+        '200':
+          description: Webhook returned.
+    patch:
+      operationId: updateWebhook
+      tags:
+      - Webhooks
+      summary: Update a webhook
+      parameters:
+      - $ref: '#/components/parameters/WebhookId'
+      responses:
+        '200':
+          description: Webhook updated.
+    delete:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete a webhook
+      parameters:
+      - $ref: '#/components/parameters/WebhookId'
+      responses:
+        '204':
+          description: Webhook deleted.
+components:
+  parameters:
+    WebhookId:
+      name: webhookId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Spinwheel secret API key issued from the developer portal (https://developer.spinwheel.io). The exact transport header is gated behind the developer login and not reconciled here.

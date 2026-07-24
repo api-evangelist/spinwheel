@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: Spinwheel Embedded Debt Solutions Bank Accounts Liabilities API
+  description: Spinwheel's embedded credit and debt API. Connect a consumer, pull an Equifax-backed debt profile, refresh real-time liability balances and payoff quotes across credit cards and loans, originate bank-account-funded payments, and subscribe to webhook events. Most resources are scoped to a connected user identified by userId, the unique key used for accessing most Spinwheel APIs. Authentication uses a Spinwheel secret API key issued from the developer portal; the exact header scheme is gated behind the developer login and is not reconciled here - it is modeled as an HTTP bearer secret key.
+  termsOfService: https://spinwheel.io/terms
+  contact:
+    name: Spinwheel Support
+    url: https://docs.spinwheel.io
+  version: '1.0'
+servers:
+- url: https://api.spinwheel.io
+  description: Production
+- url: https://sandbox-api.spinwheel.io
+  description: Sandbox
+- url: https://secure-api.spinwheel.io
+  description: Production (secure)
+- url: https://secure-sandbox-api.spinwheel.io
+  description: Sandbox (secure)
+security:
+- bearerAuth: []
+tags:
+- name: Liabilities
+  description: Request, poll, and update liability data and refresh subscriptions.
+paths:
+  /v1/users/{userId}/creditProfile/equifax/subscriptions:
+    post:
+      operationId: subscribeDebtProfileRefresh
+      tags:
+      - Liabilities
+      summary: Subscribe to debt profile refresh
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Subscription created.
+    get:
+      operationId: getRefreshSubscriptions
+      tags:
+      - Liabilities
+      summary: Get refresh subscriptions
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Subscriptions returned.
+    delete:
+      operationId: deleteRefreshSubscriptions
+      tags:
+      - Liabilities
+      summary: Delete refresh subscriptions
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: Subscription deleted.
+  /v1/users/{userId}/liabilities/refresh:
+    post:
+      operationId: requestLiabilityData
+      tags:
+      - Liabilities
+      summary: Request liability data
+      description: Requests a real-time refresh of liability balances, rates, and payoff quotes.
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Refresh requested.
+  /v1/users/{userId}/liabilities/refresh/{extRequestId}:
+    get:
+      operationId: pollLiabilityRefreshStatus
+      tags:
+      - Liabilities
+      summary: Poll request status
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: extRequestId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Refresh status returned.
+  /v1/users/{userId}/liabilities/creditcard/{liabilityId}:
+    patch:
+      operationId: updateCreditCard
+      tags:
+      - Liabilities
+      summary: Update a credit card
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/LiabilityId'
+      responses:
+        '200':
+          description: Credit card updated.
+  /v1/users/{userId}/liabilities/studentloan/{liabilityId}:
+    patch:
+      operationId: updateStudentLoan
+      tags:
+      - Liabilities
+      summary: Update a student loan
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/LiabilityId'
+      responses:
+        '200':
+          description: Student loan updated.
+components:
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique key used for accessing most Spinwheel APIs.
+      schema:
+        type: string
+    LiabilityId:
+      name: liabilityId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Spinwheel secret API key issued from the developer portal (https://developer.spinwheel.io). The exact transport header is gated behind the developer login and not reconciled here.
