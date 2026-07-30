@@ -8,7 +8,20 @@ description: Spinwheel is an embedded credit and debt data platform. Its REST AP
   loans, refresh real-time liability balances and payoff quotes, and originate
   bank-account-funded payments - all surfaced to partners as user-scoped endpoints
   and webhook events.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spinwheel.png
 tags:
 - Fintech
 - Credit Data
@@ -20,127 +33,216 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: spinwheel:credit-data
-  name: Spinwheel Credit Data API
-  tags:
-  - Credit Data
-  - Debt Profile
-  - Equifax
-  - Credit Report
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: spinwheel:spinwheel-bank-accounts-api
+  name: Spinwheel Bank Accounts API
+  description: Add and manage user bank accounts.
   humanURL: https://docs.spinwheel.io/reference/order-equifax-report
   baseURL: https://api.spinwheel.io/v1
+  tags:
+  - Bank Accounts
   properties:
-  - url: https://docs.spinwheel.io/docs/getting-started-1
-    type: Documentation
-  - url: https://docs.spinwheel.io/reference/order-equifax-report
-    type: APIReference
-  - url: openapi/spinwheel-openapi.yml
-    type: OpenAPI
-  - url: collections/spinwheel.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spinwheel.opencollection.json
-    type: OpenCollection
-  description: Orders an Equifax-backed debt profile for a connected user and retrieves
-    the resulting credit report (including a PDF report), surfacing the user's tradelines
-    and credit data for downstream debt and payment workflows.
-- aid: spinwheel:liabilities-debt
-  name: Spinwheel Liabilities & Debt API
+  - type: OpenAPI
+    url: openapi/spinwheel-bank-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/getting-started-1
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/order-equifax-report
+  - type: PostmanCollection
+    url: collections/spinwheel.postman_collection.json
+  - type: OpenCollection
+    url: collections/spinwheel.opencollection.json
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/user-connect
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/create-subscription
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/payments-process
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/webhooks
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs/webhooks
+- aid: spinwheel:spinwheel-credit-data-api
+  name: Spinwheel Credit Data API
+  description: Order and retrieve Equifax-backed debt profiles and credit reports.
+  humanURL: https://docs.spinwheel.io/reference/order-equifax-report
+  baseURL: https://api.spinwheel.io/v1
+  tags:
+  - Credit Data
+  properties:
+  - type: OpenAPI
+    url: openapi/spinwheel-credit-data-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/getting-started-1
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/order-equifax-report
+  - type: PostmanCollection
+    url: collections/spinwheel.postman_collection.json
+  - type: OpenCollection
+    url: collections/spinwheel.opencollection.json
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/user-connect
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/create-subscription
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/payments-process
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/webhooks
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs/webhooks
+- aid: spinwheel:spinwheel-liabilities-api
+  name: Spinwheel Liabilities API
+  description: Request, poll, and update liability data and refresh subscriptions.
+  humanURL: https://docs.spinwheel.io/reference/order-equifax-report
+  baseURL: https://api.spinwheel.io/v1
   tags:
   - Liabilities
-  - Loans
-  - Refresh
-  - Payoff Quote
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.spinwheel.io/docs/user-connect
-  baseURL: https://api.spinwheel.io/v1
   properties:
-  - url: https://docs.spinwheel.io/docs/user-connect
-    type: Documentation
-  - url: https://docs.spinwheel.io/reference/create-subscription
-    type: APIReference
-  - url: openapi/spinwheel-openapi.yml
-    type: OpenAPI
-  - url: collections/spinwheel.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spinwheel.opencollection.json
-    type: OpenCollection
-  description: Requests and polls real-time liability data (balances, rates, payoff
-    quotes) across credit cards, student, auto, home, personal, and miscellaneous
-    liabilities, with patch-level updates and recurring debt-profile refresh subscriptions.
-- aid: spinwheel:payments
+  - type: OpenAPI
+    url: openapi/spinwheel-liabilities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/getting-started-1
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/order-equifax-report
+  - type: PostmanCollection
+    url: collections/spinwheel.postman_collection.json
+  - type: OpenCollection
+    url: collections/spinwheel.opencollection.json
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/user-connect
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/create-subscription
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/payments-process
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/webhooks
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs/webhooks
+- aid: spinwheel:spinwheel-payments-api
   name: Spinwheel Payments API
+  description: Manage payment requests, payers, and transactions.
+  humanURL: https://docs.spinwheel.io/reference/order-equifax-report
+  baseURL: https://api.spinwheel.io/v1
   tags:
   - Payments
-  - Bank Accounts
-  - Transactions
-  - ACH
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.spinwheel.io/docs/payments-process
-  baseURL: https://api.spinwheel.io/v1
   properties:
-  - url: https://docs.spinwheel.io/docs/payments-process
-    type: Documentation
-  - url: https://docs.spinwheel.io/reference/create-subscription
-    type: APIReference
-  - url: openapi/spinwheel-openapi.yml
-    type: OpenAPI
-  - url: collections/spinwheel.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spinwheel.opencollection.json
-    type: OpenCollection
-  description: Creates and manages bank-account-funded payment requests, payers, and
-    transactions, letting partners originate payments toward a connected user's
-    liabilities and reconcile their status.
-- aid: spinwheel:users-modules
-  name: Spinwheel Users & Modules API
+  - type: OpenAPI
+    url: openapi/spinwheel-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/getting-started-1
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/order-equifax-report
+  - type: PostmanCollection
+    url: collections/spinwheel.postman_collection.json
+  - type: OpenCollection
+    url: collections/spinwheel.opencollection.json
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/user-connect
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/create-subscription
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/payments-process
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/webhooks
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs/webhooks
+- aid: spinwheel:spinwheel-reference-api
+  name: Spinwheel Reference API
+  description: Constants and vehicle reference data.
+  humanURL: https://docs.spinwheel.io/reference/order-equifax-report
+  baseURL: https://api.spinwheel.io/v1
+  tags:
+  - Reference
+  properties:
+  - type: OpenAPI
+    url: openapi/spinwheel-reference-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/getting-started-1
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/order-equifax-report
+  - type: PostmanCollection
+    url: collections/spinwheel.postman_collection.json
+  - type: OpenCollection
+    url: collections/spinwheel.opencollection.json
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/user-connect
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/create-subscription
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/payments-process
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/webhooks
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs/webhooks
+- aid: spinwheel:spinwheel-users-api
+  name: Spinwheel Users API
+  description: Connect and manage users via SMS, KBA, phone, profile, or network token.
+  humanURL: https://docs.spinwheel.io/reference/order-equifax-report
+  baseURL: https://api.spinwheel.io/v1
   tags:
   - Users
-  - Connect
-  - SMS
-  - KBA
-  - Modules
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.spinwheel.io/docs/user-connect
-  baseURL: https://api.spinwheel.io/v1
   properties:
-  - url: https://docs.spinwheel.io/docs/user-connect
-    type: Documentation
-  - url: https://docs.spinwheel.io/docs
-    type: APIReference
-  - url: openapi/spinwheel-openapi.yml
-    type: OpenAPI
-  - url: collections/spinwheel.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spinwheel.opencollection.json
-    type: OpenCollection
-  description: Connects and manages the user that is the foundation of every Spinwheel
-    workflow - via SMS OTP, knowledge-based authentication (KBA), pre-verified phone,
-    user profile, or a partner network token - plus the drop-in modules that render
-    these flows.
-- aid: spinwheel:webhooks
+  - type: OpenAPI
+    url: openapi/spinwheel-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/getting-started-1
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/order-equifax-report
+  - type: PostmanCollection
+    url: collections/spinwheel.postman_collection.json
+  - type: OpenCollection
+    url: collections/spinwheel.opencollection.json
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/user-connect
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/create-subscription
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/payments-process
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/webhooks
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs/webhooks
+- aid: spinwheel:spinwheel-webhooks-api
   name: Spinwheel Webhooks API
+  description: Register and manage webhook endpoints.
+  humanURL: https://docs.spinwheel.io/reference/order-equifax-report
+  baseURL: https://api.spinwheel.io/v1
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.spinwheel.io/docs/webhooks
-  baseURL: https://api.spinwheel.io/v1
   properties:
-  - url: https://docs.spinwheel.io/docs/webhooks
-    type: Documentation
-  - url: https://docs.spinwheel.io/docs/webhooks
-    type: APIReference
-  - url: openapi/spinwheel-openapi.yml
-    type: OpenAPI
-  - url: collections/spinwheel.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spinwheel.opencollection.json
-    type: OpenCollection
-  description: Registers and manages webhook endpoints and headers, delivering event
-    notifications such as subscription, credit-profile transaction, refresh, payment,
-    refinance, bank-account-lookup, and payoff-quote status changes.
+  - type: OpenAPI
+    url: openapi/spinwheel-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/getting-started-1
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/order-equifax-report
+  - type: PostmanCollection
+    url: collections/spinwheel.postman_collection.json
+  - type: OpenCollection
+    url: collections/spinwheel.opencollection.json
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/user-connect
+  - type: APIReference
+    url: https://docs.spinwheel.io/reference/create-subscription
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/payments-process
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs
+  - type: Documentation
+    url: https://docs.spinwheel.io/docs/webhooks
+  - type: APIReference
+    url: https://docs.spinwheel.io/docs/webhooks
 common:
 - type: AgenticAccess
   url: agentic-access/spinwheel-agentic-access.yml
