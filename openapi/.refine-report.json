@@ -1,0 +1,26 @@
+{
+  "provider": "spinwheel",
+  "sources": [
+    "spinwheel-bank-accounts-api-openapi.yml",
+    "spinwheel-credit-data-api-openapi.yml",
+    "spinwheel-liabilities-api-openapi.yml",
+    "spinwheel-payments-api-openapi.yml",
+    "spinwheel-reference-api-openapi.yml",
+    "spinwheel-users-api-openapi.yml",
+    "spinwheel-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "spinwheel-bank-accounts-api-openapi.yml",
+    "spinwheel-credit-data-api-openapi.yml",
+    "spinwheel-liabilities-api-openapi.yml",
+    "spinwheel-payments-api-openapi.yml",
+    "spinwheel-reference-api-openapi.yml",
+    "spinwheel-users-api-openapi.yml",
+    "spinwheel-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

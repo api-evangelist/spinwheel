@@ -1,0 +1,471 @@
+openapi: 3.0.1
+info:
+  title: Spinwheel Embedded Debt Solutions API
+  description: >-
+    Spinwheel's embedded credit and debt API. Connect a consumer, pull an
+    Equifax-backed debt profile, refresh real-time liability balances and payoff
+    quotes across credit cards and loans, originate bank-account-funded payments,
+    and subscribe to webhook events. Most resources are scoped to a connected
+    user identified by userId, the unique key used for accessing most Spinwheel
+    APIs. Authentication uses a Spinwheel secret API key issued from the developer
+    portal; the exact header scheme is gated behind the developer login and is
+    not reconciled here - it is modeled as an HTTP bearer secret key.
+  termsOfService: https://spinwheel.io/terms
+  contact:
+    name: Spinwheel Support
+    url: https://docs.spinwheel.io
+  version: '1.0'
+servers:
+  - url: https://api.spinwheel.io
+    description: Production
+  - url: https://sandbox-api.spinwheel.io
+    description: Sandbox
+  - url: https://secure-api.spinwheel.io
+    description: Production (secure)
+  - url: https://secure-sandbox-api.spinwheel.io
+    description: Sandbox (secure)
+security:
+  - bearerAuth: []
+tags:
+  - name: Users
+    description: Connect and manage users via SMS, KBA, phone, profile, or network token.
+  - name: Credit Data
+    description: Order and retrieve Equifax-backed debt profiles and credit reports.
+  - name: Liabilities
+    description: Request, poll, and update liability data and refresh subscriptions.
+  - name: Payments
+    description: Manage payment requests, payers, and transactions.
+  - name: Bank Accounts
+    description: Add and manage user bank accounts.
+  - name: Webhooks
+    description: Register and manage webhook endpoints.
+  - name: Reference
+    description: Constants and vehicle reference data.
+paths:
+  /v1/users/{userId}:
+    get:
+      operationId: getUser
+      tags: [Users]
+      summary: Retrieve a user
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User retrieved.
+    delete:
+      operationId: deleteUser
+      tags: [Users]
+      summary: Delete a user
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: User deleted.
+  /v1/users/connect/sms:
+    post:
+      operationId: connectUserSms
+      tags: [Users]
+      summary: Connect a user via SMS
+      description: Submits a US phone number and date of birth to send a one-time passcode by SMS.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                dateOfBirth:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: SMS connection initiated.
+  /v1/users/connect/sms/verify:
+    post:
+      operationId: verifySmsConnection
+      tags: [Users]
+      summary: Verify an SMS connection
+      description: Verifies the one-time passcode delivered by SMS to complete the connection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                code:
+                  type: string
+      responses:
+        '200':
+          description: SMS connection verified.
+  /v1/users/connect/kba:
+    post:
+      operationId: connectUserKba
+      tags: [Users]
+      summary: Connect a user via KBA
+      description: Submits user PII to begin knowledge-based authentication.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: KBA questions returned.
+  /v1/users/connect/kba/verify:
+    post:
+      operationId: verifyKbaAnswers
+      tags: [Users]
+      summary: Submit answers for KBA
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: KBA answers verified.
+  /v1/users/connect/phone:
+    post:
+      operationId: connectUserPhone
+      tags: [Users]
+      summary: Connect a pre-verified (phone) user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: User connected.
+  /v1/users/connect/network-token:
+    post:
+      operationId: connectUserNetworkToken
+      tags: [Users]
+      summary: Connect a user via network token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: User connected.
+  /v1/users/{userId}/debt-profile:
+    post:
+      operationId: requestDebtProfile
+      tags: [Credit Data]
+      summary: Request a debt profile
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Debt profile requested.
+  /v1/users/{userId}/creditProfile/equifax:
+    post:
+      operationId: orderEquifaxReport
+      tags: [Credit Data]
+      summary: Get a debt profile (Equifax)
+      description: Orders an Equifax credit report for a connected user.
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Equifax debt profile ordered.
+  /v1/users/{userId}/creditProfile/equifax/subscriptions:
+    post:
+      operationId: subscribeDebtProfileRefresh
+      tags: [Liabilities]
+      summary: Subscribe to debt profile refresh
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Subscription created.
+    get:
+      operationId: getRefreshSubscriptions
+      tags: [Liabilities]
+      summary: Get refresh subscriptions
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Subscriptions returned.
+    delete:
+      operationId: deleteRefreshSubscriptions
+      tags: [Liabilities]
+      summary: Delete refresh subscriptions
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: Subscription deleted.
+  /v1/users/{userId}/liabilities/refresh:
+    post:
+      operationId: requestLiabilityData
+      tags: [Liabilities]
+      summary: Request liability data
+      description: Requests a real-time refresh of liability balances, rates, and payoff quotes.
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Refresh requested.
+  /v1/users/{userId}/liabilities/refresh/{extRequestId}:
+    get:
+      operationId: pollLiabilityRefreshStatus
+      tags: [Liabilities]
+      summary: Poll request status
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - name: extRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Refresh status returned.
+  /v1/users/{userId}/liabilities/creditcard/{liabilityId}:
+    patch:
+      operationId: updateCreditCard
+      tags: [Liabilities]
+      summary: Update a credit card
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/LiabilityId'
+      responses:
+        '200':
+          description: Credit card updated.
+  /v1/users/{userId}/liabilities/studentloan/{liabilityId}:
+    patch:
+      operationId: updateStudentLoan
+      tags: [Liabilities]
+      summary: Update a student loan
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/LiabilityId'
+      responses:
+        '200':
+          description: Student loan updated.
+  /v1/users/{userId}/bank-accounts:
+    post:
+      operationId: addBankAccount
+      tags: [Bank Accounts]
+      summary: Add a bank account
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Bank account added.
+  /v1/users/{userId}/bank-accounts/{accountId}:
+    patch:
+      operationId: updateBankAccount
+      tags: [Bank Accounts]
+      summary: Update a bank account
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Bank account updated.
+    delete:
+      operationId: deleteBankAccount
+      tags: [Bank Accounts]
+      summary: Delete a bank account
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '204':
+          description: Bank account deleted.
+  /v1/payments/requests:
+    post:
+      operationId: createPayment
+      tags: [Payments]
+      summary: Create a payment
+      responses:
+        '200':
+          description: Payment created.
+    get:
+      operationId: listPayments
+      tags: [Payments]
+      summary: Get a list of payments
+      responses:
+        '200':
+          description: Payments returned.
+  /v1/payments/requests/{requestId}:
+    get:
+      operationId: getPayment
+      tags: [Payments]
+      summary: Get single payment details
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Payment returned.
+    delete:
+      operationId: deletePayment
+      tags: [Payments]
+      summary: Delete a payment
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '204':
+          description: Payment deleted.
+  /v1/payments/payers:
+    post:
+      operationId: createPayer
+      tags: [Payments]
+      summary: Create a partner payer
+      responses:
+        '200':
+          description: Payer created.
+    get:
+      operationId: listPayers
+      tags: [Payments]
+      summary: Get a list of payers
+      responses:
+        '200':
+          description: Payers returned.
+  /v1/payments/payers/{payerId}:
+    get:
+      operationId: getPayer
+      tags: [Payments]
+      summary: Get single payer details
+      parameters:
+        - $ref: '#/components/parameters/PayerId'
+      responses:
+        '200':
+          description: Payer returned.
+    delete:
+      operationId: deletePayer
+      tags: [Payments]
+      summary: Delete a payer
+      parameters:
+        - $ref: '#/components/parameters/PayerId'
+      responses:
+        '204':
+          description: Payer deleted.
+  /v1/webhooks:
+    post:
+      operationId: createWebhook
+      tags: [Webhooks]
+      summary: Create a webhook
+      responses:
+        '200':
+          description: Webhook created.
+    get:
+      operationId: listWebhooks
+      tags: [Webhooks]
+      summary: Get a list of webhooks
+      responses:
+        '200':
+          description: Webhooks returned.
+  /v1/webhooks/{webhookId}:
+    get:
+      operationId: getWebhook
+      tags: [Webhooks]
+      summary: Get single webhook details
+      parameters:
+        - $ref: '#/components/parameters/WebhookId'
+      responses:
+        '200':
+          description: Webhook returned.
+    patch:
+      operationId: updateWebhook
+      tags: [Webhooks]
+      summary: Update a webhook
+      parameters:
+        - $ref: '#/components/parameters/WebhookId'
+      responses:
+        '200':
+          description: Webhook updated.
+    delete:
+      operationId: deleteWebhook
+      tags: [Webhooks]
+      summary: Delete a webhook
+      parameters:
+        - $ref: '#/components/parameters/WebhookId'
+      responses:
+        '204':
+          description: Webhook deleted.
+  /v1/constants:
+    get:
+      operationId: listConstants
+      tags: [Reference]
+      summary: Get a list of constants
+      responses:
+        '200':
+          description: Constants returned.
+  /v1/vehicles/makes:
+    get:
+      operationId: listVehicleMakes
+      tags: [Reference]
+      summary: Get a list of makes
+      responses:
+        '200':
+          description: Makes returned.
+  /v1/vehicles/models:
+    get:
+      operationId: listVehicleModels
+      tags: [Reference]
+      summary: Get a list of models
+      responses:
+        '200':
+          description: Models returned.
+components:
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique key used for accessing most Spinwheel APIs.
+      schema:
+        type: string
+    LiabilityId:
+      name: liabilityId
+      in: path
+      required: true
+      schema:
+        type: string
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+    RequestId:
+      name: requestId
+      in: path
+      required: true
+      schema:
+        type: string
+    PayerId:
+      name: payerId
+      in: path
+      required: true
+      schema:
+        type: string
+    WebhookId:
+      name: webhookId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Spinwheel secret API key issued from the developer portal
+        (https://developer.spinwheel.io). The exact transport header is gated
+        behind the developer login and not reconciled here.
