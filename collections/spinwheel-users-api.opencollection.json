@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spinwheel Embedded Debt Solutions Bank Accounts Users API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Retrieve a user"
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Delete a user"
+        },
+        {
+          "info": {
+            "name": "Connect a user via SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/sms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a US phone number and date of birth to send a one-time passcode by SMS."
+        },
+        {
+          "info": {
+            "name": "Verify an SMS connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/sms/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verifies the one-time passcode delivered by SMS to complete the connection."
+        },
+        {
+          "info": {
+            "name": "Connect a user via KBA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/kba",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits user PII to begin knowledge-based authentication."
+        },
+        {
+          "info": {
+            "name": "Submit answers for KBA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/kba/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit answers for KBA"
+        },
+        {
+          "info": {
+            "name": "Connect a pre-verified (phone) user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/phone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect a pre-verified (phone) user"
+        },
+        {
+          "info": {
+            "name": "Connect a user via network token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/connect/network-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect a user via network token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

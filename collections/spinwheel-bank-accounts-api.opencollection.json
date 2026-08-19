@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spinwheel Embedded Debt Solutions Bank Accounts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bank Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/:userId/bank-accounts",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Add a bank account"
+        },
+        {
+          "info": {
+            "name": "Update a bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spinwheel.io/v1/users/:userId/bank-accounts/:accountId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a bank account"
+        },
+        {
+          "info": {
+            "name": "Delete a bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/users/:userId/bank-accounts/:accountId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a bank account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

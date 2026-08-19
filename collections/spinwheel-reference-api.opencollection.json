@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spinwheel Embedded Debt Solutions Bank Accounts Reference API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of constants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/constants"
+          },
+          "docs": "Get a list of constants"
+        },
+        {
+          "info": {
+            "name": "Get a list of makes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/vehicles/makes"
+          },
+          "docs": "Get a list of makes"
+        },
+        {
+          "info": {
+            "name": "Get a list of models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/vehicles/models"
+          },
+          "docs": "Get a list of models"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

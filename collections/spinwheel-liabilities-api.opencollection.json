@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spinwheel Embedded Debt Solutions Bank Accounts Liabilities API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Liabilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get refresh subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/users/:userId/creditProfile/equifax/subscriptions",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Get refresh subscriptions"
+        },
+        {
+          "info": {
+            "name": "Subscribe to debt profile refresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/:userId/creditProfile/equifax/subscriptions",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Subscribe to debt profile refresh"
+        },
+        {
+          "info": {
+            "name": "Delete refresh subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/users/:userId/creditProfile/equifax/subscriptions",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Delete refresh subscriptions"
+        },
+        {
+          "info": {
+            "name": "Request liability data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/:userId/liabilities/refresh",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Requests a real-time refresh of liability balances, rates, and payoff quotes."
+        },
+        {
+          "info": {
+            "name": "Poll request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/users/:userId/liabilities/refresh/:extRequestId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              },
+              {
+                "name": "extRequestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Poll request status"
+        },
+        {
+          "info": {
+            "name": "Update a credit card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spinwheel.io/v1/users/:userId/liabilities/creditcard/:liabilityId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              },
+              {
+                "name": "liabilityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a credit card"
+        },
+        {
+          "info": {
+            "name": "Update a student loan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spinwheel.io/v1/users/:userId/liabilities/studentloan/:liabilityId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              },
+              {
+                "name": "liabilityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a student loan"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

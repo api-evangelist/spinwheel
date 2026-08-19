@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spinwheel Embedded Debt Solutions Bank Accounts Credit Data API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Credit Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a debt profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/:userId/debt-profile",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Request a debt profile"
+        },
+        {
+          "info": {
+            "name": "Get a debt profile (Equifax)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/users/:userId/creditProfile/equifax",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique key used for accessing most Spinwheel APIs."
+              }
+            ]
+          },
+          "docs": "Orders an Equifax credit report for a connected user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

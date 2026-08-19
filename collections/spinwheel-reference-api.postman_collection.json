@@ -1,0 +1,246 @@
+{
+  "item": [
+    {
+      "id": "82ff1ae4-ef01-4c5e-a568-1cfd7eb05780",
+      "name": "Reference",
+      "description": {
+        "content": "Constants and vehicle reference data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0faa9c1-f2a5-4bfa-b191-f3d992efaba3",
+          "name": "Get a list of constants",
+          "request": {
+            "name": "Get a list of constants",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "constants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6c5ae7d-f7c3-4136-ad48-edd4fc842669",
+              "name": "Constants returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "constants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f8a7ab5-8fc1-43bb-8828-cfd01a5738a4",
+          "name": "Get a list of makes",
+          "request": {
+            "name": "Get a list of makes",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "vehicles",
+                "makes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d32dc665-a14e-45ac-8794-144473e876c2",
+              "name": "Makes returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vehicles",
+                    "makes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22da0f60-4a39-4bc2-aa6b-6d1ead8158fd",
+          "name": "Get a list of models",
+          "request": {
+            "name": "Get a list of models",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "vehicles",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "053262d7-9038-4334-a93a-52ffaa744ff8",
+              "name": "Models returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vehicles",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spinwheel.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "12a95bb1-f0d0-403a-a3c8-7918075f89c8",
+    "name": "Spinwheel Embedded Debt Solutions Bank Accounts Reference API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Spinwheel's embedded credit and debt API. Connect a consumer, pull an Equifax-backed debt profile, refresh real-time liability balances and payoff quotes across credit cards and loans, originate bank-account-funded payments, and subscribe to webhook events. Most resources are scoped to a connected user identified by userId, the unique key used for accessing most Spinwheel APIs. Authentication uses a Spinwheel secret API key issued from the developer portal; the exact header scheme is gated behind the developer login and is not reconciled here - it is modeled as an HTTP bearer secret key.\n\nContact Support:\n Name: Spinwheel Support",
+      "type": "text/plain"
+    }
+  }
+}

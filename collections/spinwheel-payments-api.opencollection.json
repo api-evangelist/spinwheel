@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spinwheel Embedded Debt Solutions Bank Accounts Payments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/requests"
+          },
+          "docs": "Get a list of payments"
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/payments/requests"
+          },
+          "docs": "Create a payment"
+        },
+        {
+          "info": {
+            "name": "Get single payment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get single payment details"
+        },
+        {
+          "info": {
+            "name": "Delete a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/payments/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a payment"
+        },
+        {
+          "info": {
+            "name": "Get a list of payers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/payers"
+          },
+          "docs": "Get a list of payers"
+        },
+        {
+          "info": {
+            "name": "Create a partner payer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spinwheel.io/v1/payments/payers"
+          },
+          "docs": "Create a partner payer"
+        },
+        {
+          "info": {
+            "name": "Get single payer details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spinwheel.io/v1/payments/payers/:payerId",
+            "params": [
+              {
+                "name": "payerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get single payer details"
+        },
+        {
+          "info": {
+            "name": "Delete a payer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spinwheel.io/v1/payments/payers/:payerId",
+            "params": [
+              {
+                "name": "payerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a payer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
