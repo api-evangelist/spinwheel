@@ -189,6 +189,8 @@ apis:
   humanURL: https://docs.spinwheel.io/reference/order-equifax-report
   baseURL: https://api.spinwheel.io/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -219,6 +221,8 @@ apis:
   humanURL: https://docs.spinwheel.io/reference/order-equifax-report
   baseURL: https://api.spinwheel.io/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
