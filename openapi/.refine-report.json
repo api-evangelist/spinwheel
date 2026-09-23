@@ -1,13 +1,7 @@
 {
   "provider": "spinwheel",
   "sources": [
-    "spinwheel-bank-accounts-api-openapi.yml",
-    "spinwheel-credit-data-api-openapi.yml",
-    "spinwheel-liabilities-api-openapi.yml",
-    "spinwheel-payments-api-openapi.yml",
-    "spinwheel-reference-api-openapi.yml",
-    "spinwheel-users-api-openapi.yml",
-    "spinwheel-webhooks-api-openapi.yml"
+    "_original/spinwheel-openapi.yml"
   ],
   "outputs": [
     "spinwheel-bank-accounts-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "spinwheel-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "spinwheel-bank-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spinwheel-credit-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spinwheel-liabilities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spinwheel-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spinwheel-reference-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spinwheel-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spinwheel-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
