@@ -107,17 +107,17 @@ paths:
           description: Student loan updated.
 components:
   parameters:
-    LiabilityId:
-      name: liabilityId
-      in: path
-      required: true
-      schema:
-        type: string
     UserId:
       name: userId
       in: path
       required: true
       description: The unique key used for accessing most Spinwheel APIs.
+      schema:
+        type: string
+    LiabilityId:
+      name: liabilityId
+      in: path
+      required: true
       schema:
         type: string
   securitySchemes:
