@@ -100,14 +100,14 @@ paths:
           description: Payer deleted.
 components:
   parameters:
-    PayerId:
-      name: payerId
+    RequestId:
+      name: requestId
       in: path
       required: true
       schema:
         type: string
-    RequestId:
-      name: requestId
+    PayerId:
+      name: payerId
       in: path
       required: true
       schema:
