@@ -261,6 +261,9 @@ apis:
   - type: APIReference
     url: https://docs.spinwheel.io/docs/webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/spinwheel-capability-edges.yml
+  name: Spinwheel Business Capability Map
 - type: AgenticAccess
   url: agentic-access/spinwheel-agentic-access.yml
 - type: DomainSecurity
